@@ -26,7 +26,10 @@ module.exports = function (options) {
   var loaders = {
     es6: {
       test: /\.(es6|jsx)$/,
-      loaders: ['babel', 'eslint-loader']
+      loaders: ['babel', 'eslint-loader'],
+      query: {
+        presets: ['es2015', 'react', 'stage-0']
+      }
     },
 
     json: {
