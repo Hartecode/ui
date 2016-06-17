@@ -1,7 +1,6 @@
 const React = require('react');
 const Demo = require('react-demo');
 const moment = require('moment-timezone');
-const {RouteHandler} = require('react-router');
 
 const {
   AvailabilityGrid,
@@ -23,7 +22,7 @@ class DemoPage extends React.Component {
     const sampleDropdownData = [
       { value: 'pizza', displayName: "Tasty Pizza"},
       { value: 'waffles', displayName: "Delicious Waffles"},
-      { value: 'felafel', displayName: "I'm feelin Falafel"},
+      { value: 'falafel', displayName: "I'm feelin Falafel"},
       { value: 'bose', displayName: "No highs no lows, must be Bose"}
     ];
 
@@ -66,6 +65,7 @@ class DemoPage extends React.Component {
       <div className="tui-demo-page-container">
         <div className="tui-demo-page">
           <h1>Thinkful UI</h1>
+
           <h3>NotificationView</h3>
           <div style={{
             'position': 'relative',
@@ -99,7 +99,7 @@ class DemoPage extends React.Component {
               data: Demo.props.constant(sampleDropdownData),
               initialSelectedInd: Demo.props.choices([undefined,0,1,2]),
               defaultDisplay: Demo.props.string("Choose something awesome"),
-              handleChange: Demo.props.callback.log(e => e.target.getAttribute('value'))
+              handleChange: Demo.props.callback.log(e => e.target.value)
             }} />
 
           <h3>DatePicker</h3>
@@ -165,7 +165,7 @@ class DemoPage extends React.Component {
                 maxSuggestions: Demo.props.choices([2, 3, 4]),
                 minTopicLength: 3,
               }}/>
-          <RouteHandler />
+          {this.props.children}
         </div>
         <Footer user={{timezone: 'America/New_York'}} />
       </div>);

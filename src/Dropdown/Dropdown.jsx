@@ -8,7 +8,7 @@ require('./dropdown.less');
 /**
  * Shared dropdown menu element
  * @property data {Array} of items to display in the dropdown,
-      containing `value` and `displayName`
+      containing `value` and `displayName`, or strings
  * @property selectedInd {Int} of the selected index in the list
  * @property defaultDisplay {String} of default value that should be displayed
  * @property handleChange {Function} to handle dropdown click/change
@@ -18,7 +18,8 @@ const Dropdown = React.createClass({
   propTypes: {
     data: React.PropTypes.arrayOf(
       React.PropTypes.oneOfType([
-        React.PropTypes.string, React.PropTypes.object
+        React.PropTypes.string,
+        React.PropTypes.object
       ])).isRequired,
     initialSelectedInd: React.PropTypes.number,
     selectedInd: React.PropTypes.number,
@@ -63,10 +64,10 @@ const Dropdown = React.createClass({
     return data.map((item, ind) => {
       return (
         <p
-          className={cx("dropdown-item", item.className)}
-          id={ind}
-          key={ind}
-          value={item.value}>
+            className={cx("dropdown-item", item.className)}
+            id={ind}
+            value={item.value}
+            key={ind}>
           {item.displayName}
         </p>
       );

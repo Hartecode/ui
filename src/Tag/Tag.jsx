@@ -19,15 +19,13 @@ class Tag extends React.Component {
 
   render() {
     const {children, className, displayName, onClick, url} = this.props;
-    return (
-      <a
-          className={cx("tui-tag", className)}
-          href={url}
-          onClick={onClick}>
-        {displayName}
-        {children}
-      </a>
-      )
+    return <a
+        className={cx("tui-tag", className)}
+        href={url}
+        onClick={onClick}>
+      {displayName}
+      {children}
+    </a>
   }
 }
 

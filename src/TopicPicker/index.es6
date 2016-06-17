@@ -1,2 +1,2 @@
 require('./topic-picker.less');
-export default require('./TopicPicker')
+module.exports = require('./TopicPicker')

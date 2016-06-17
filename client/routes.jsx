@@ -1,6 +1,6 @@
 const React = require('react');
 const Router = require('react-router');
-const {DefaultRoute, Route, RouteHandler, NotFoundRoute, Redirect} = Router;
+const {IndexRoute, Route} = Router;
 const {DemoPage} = require('./DemoPage');
 const {HomePage} = require('./HomePage');
 const {StaticModalPage} = require('./StaticModalPage');
@@ -17,18 +17,18 @@ class App extends React.Component {
   render() {
     return <div>
       <AppBar user={USER} config={CONFIG}/>
-      <RouteHandler user={USER} {...this.props}/>
+      {this.props.children}
     </div>;
   }
 }
 
 const routes = (
-  <Route name="app" path="/" handler={App}>
-    <Route name="demo" path="demo" handler={DemoPage}>
-      <Route name="modalRoute" path="modal" handler={StaticModalPage} />
+  <Route path="/" component={App}>
+    <Route path="demo" component={DemoPage}>
+      <Route path="modal" component={StaticModalPage} />
     </Route>
-    <DefaultRoute name="default" handler={HomePage} />
-    <NotFoundRoute handler={FourOhFour}/>
+    <IndexRoute component={HomePage} />
+    <Route path="*" component={FourOhFour}/>
   </Route>
 );
 

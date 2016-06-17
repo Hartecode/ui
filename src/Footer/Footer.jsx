@@ -161,7 +161,7 @@ class FooterColumn extends React.Component {
     const { heading, links } = this.props;
     return <div className="footer-column">
       <h4 className="footer-heading">{heading}</h4>
-        {links.map((link, idx) => (<SectionLink key={idx} {...link}/>))}
+        {links.map((link, idx) => (<SectionLink {...link} key={idx} />))}
     </div>
   }
 }
@@ -233,7 +233,8 @@ class Footer extends React.Component {
                 <Icon name="twitter"/>
               </a>
             </div>
-            {sections.map(section => <FooterColumn {...section}/>)}
+            {sections.map((section, index) => <FooterColumn
+              {...section} key={index}/>)}
             <SectionLink
                 className="support-mobile"
                 location={`${config.www.url}/support`}

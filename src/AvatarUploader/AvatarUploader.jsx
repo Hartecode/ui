@@ -1,4 +1,4 @@
-const AvatarEditor = require('react-avatar-editor');
+const AvatarEditor = require('react-avatar-editor/dist');
 const cx = require('classnames');
 const md5 = require('md5');
 const noCache = require('superagent-no-cache');

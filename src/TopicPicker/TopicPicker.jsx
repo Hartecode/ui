@@ -29,8 +29,8 @@ const DEFAULT_MIN_TOPIC_LENGTH = 1;
  * @property {Number} minTopicLength The min length a topic string must be
  */
 class TopicPicker extends React.Component {
-  constructor() {
-    super();
+  constructor(props, context) {
+    super(props, context);
     this.state = {
       pattern: '',
       topics: [],
@@ -221,65 +221,63 @@ class TopicPicker extends React.Component {
   render() {
     const {pattern, topics, selectedSuggestionIndex, isFocused} = this.state;
     const {className, placeholderText} = this.props;
-    return (
-      <div
+    return <div
         className={cx(
           'topic-picker',
           className,
           isFocused && 'topic-picker-focus')}>
 
-        {/* The existing topics */}
-        {topics.map((topic, index) => {
-          return (
-            <Tag
-              key={index}
-              className='topic'
-              displayName={topic}>
-              <div
-                  className="topic-delete-button"
-                  onClick={(event) => this._handleRemoveTopic(topic)}>
-                <Icon name="close"/>
-              </div>
-            </Tag>
-          );
-        })}
+      {/* The existing topics */}
+      {topics.map((topic, index) => {
+        return (
+          <Tag
+            key={index}
+            className='topic'
+            displayName={topic}>
+            <div
+                className="topic-delete-button"
+                onClick={(event) => this._handleRemoveTopic(topic)}>
+              <Icon name="close"/>
+            </div>
+          </Tag>
+        );
+      })}
 
-        <div
-            className="topic-form"
-            onKeyDown={this._handleKeyDown}
-            onSubmit={this._handleTopicSubmit}>
-          <input
-              onFocus={this._toggleFocus}
-              onBlur={this._toggleFocus}
-              className="topic-form-input"
-              type="text"
-              value={pattern}
-              placeholder={placeholderText}
-              onChange={this._handlePatternChange}/>
+      <div
+          className="topic-form"
+          onKeyDown={this._handleKeyDown}
+          onSubmit={this._handleTopicSubmit}>
+        <input
+            onFocus={this._toggleFocus}
+            onBlur={this._toggleFocus}
+            className="topic-form-input"
+            type="text"
+            value={pattern}
+            placeholder={placeholderText}
+            onChange={this._handlePatternChange}/>
 
-          {/* The list of topic suggestions */}
-          {pattern && (
-            <ul className="topic-suggestion-list">
-              {this._filterTopicList().map((topic, index) => {
-                return (
-                  <li
-                    key={index}
-                    className={cx(
-                      'topic-list-item',
-                      {selected: index === selectedSuggestionIndex})
-                    }
-                    onClick={(event) => this._handleAddTopic(
-                      topic.replace(/\*/g, ''))
-                    }
-                    dangerouslySetInnerHTML={{__html: marked(topic)}}/>
-                );
-              })}
-            </ul>
-            )
-          }
-        </div>
+        {/* The list of topic suggestions */}
+        {pattern && (
+          <ul className="topic-suggestion-list">
+            {this._filterTopicList().map((topic, index) => {
+              return (
+                <li
+                  key={index}
+                  className={cx(
+                    'topic-list-item',
+                    {selected: index === selectedSuggestionIndex})
+                  }
+                  onClick={(event) => this._handleAddTopic(
+                    topic.replace(/\*/g, ''))
+                  }
+                  dangerouslySetInnerHTML={{__html: marked(topic)}}/>
+              );
+            })}
+          </ul>
+          )
+        }
       </div>
-    );
+    </div>
   }
 }
 

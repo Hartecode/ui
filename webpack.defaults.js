@@ -26,10 +26,13 @@ module.exports = function (options) {
   var loaders = {
     es6: {
       test: /\.(es6|jsx)$/,
-      loaders: ['babel?stage=0', 'eslint-loader'] },
+      loaders: ['babel', 'eslint-loader']
+    },
 
     json: {
-      test: /\.json$/, loaders: ['json']},
+      test: /\.json$/,
+      loaders: ['json']
+    },
 
     less: {
       test: /\.less$/,
@@ -42,20 +45,25 @@ module.exports = function (options) {
 
     markdown: {
       test: /\.md$/,
-      loaders: ['html', 'remarkable']},
+      loaders: ['html', 'remarkable']
+    },
 
     svg: {
-      test: /\.svg$/, loader: 'html'},
+      test: /\.svg$/,
+      loader: 'html'
+    },
 
     txt: {
-      test: /\.txt$/, loader: 'text'}
+      test: /\.txt$/,
+      loader: 'text'
+    }
   }
 
   var webpackConfig = {
     cache: true,
     devtool: 'source-map',
     entry: options.entry,
-    noParse: [/moment.js/],
+    noParse: [/moment\.js/],
     module: {
       loaders: [
         loaders.es6,
@@ -63,15 +71,18 @@ module.exports = function (options) {
         loaders.less,
         loaders.markdown,
         loaders.svg,
-        loaders.txt ] },
+        loaders.txt
+      ]
+    },
     output: {
       path: path.join(options.__dirname, options.output.publicPath + '/build/'),
       publicPath: options.output.publicPath,
-      filename: options.output.filename },
+      filename: options.output.filename
+    },
     plugins: [],
     resolve: {
       extensions: ['', '.js', '.jsx', '.es', '.es6'],
-      alias: {app: path.join(options.__dirname, 'client')}
+      alias: { app: path.join(options.__dirname, 'client') }
     },
     resolveLoader: {
       root: path.join(__dirname, 'node_modules')},
@@ -101,7 +112,7 @@ module.exports = function (options) {
     webpackConfig.output.publicPath = 'http://localhost:' +
                                         webpackConfig.hotloadPort +
                                         webpackConfig.output.publicPath;
-    loaders.es6.loaders = ['react-hot', 'babel?stage=0&optional=runtime'];
+    loaders.es6.loaders = ['react-hot', 'babel'];
     loaders.less.loader = 'style!css!autoprefixer!less';
 
     webpackConfig.plugins = [

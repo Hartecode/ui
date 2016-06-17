@@ -82,10 +82,11 @@ const AvailabilityGridDay = React.createClass({
   },
 
   render() {
-    let slotNodes = this.props.data.slots.map((slotData) => {
+    let slotNodes = this.props.data.slots.map((slotData, index) => {
       const {data, ...other} = this.props;
       return (
         <AvailabilityGridSlot
+            key={index}
             data={slotData}
             dayIndex={data.index}
             {...other} />
@@ -350,9 +351,9 @@ const AvailabilityGrid = React.createClass({
   },
 
   render() {
-    let slotNames = this.state.slotNames.map((slotName) => {
+    let slotNames = this.state.slotNames.map((slotName, index) => {
       return (
-        <div className="availability-grid-slot-name">
+        <div className="availability-grid-slot-name" key={index}>
           {slotName}
         </div>
       );
@@ -369,9 +370,10 @@ const AvailabilityGrid = React.createClass({
       days = this.state.days;
     }
 
-    let dayNodes = days.map((dayData) => {
+    let dayNodes = days.map((dayData, index) => {
       return (
         <AvailabilityGridDay
+            key={index}
             data={dayData}
             isMaxDay={this.state.activeDayIdx >= this.state.days.length - 1}
             isMinDay={this.state.activeDayIdx <= 0}
