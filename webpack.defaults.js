@@ -26,7 +26,7 @@ module.exports = function (options) {
   var loaders = {
     es6: {
       test: /\.(es6|jsx)$/,
-      loaders: ['babel', 'eslint-loader'],
+      loader:'babel',
       query: {
         presets: ['es2015', 'react', 'stage-0']
       }
@@ -68,6 +68,9 @@ module.exports = function (options) {
     entry: options.entry,
     noParse: [/moment\.js/],
     module: {
+      preLoaders: [
+        { test: /\.(es6|jsx?)$/, loader: 'eslint' }
+      ],
       loaders: [
         loaders.es6,
         loaders.json,
