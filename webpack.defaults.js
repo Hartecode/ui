@@ -25,11 +25,12 @@ module.exports = function (options) {
 
   var loaders = {
     es6: {
-      test: /\.(es6|jsx)$/,
+      test: /\.(es6|jsx?)$/,
       loader:'babel',
       query: {
         presets: ['es2015', 'react', 'stage-0']
-      }
+      },
+      exclude: /node_modules/
     },
 
     json: {
@@ -68,9 +69,6 @@ module.exports = function (options) {
     entry: options.entry,
     noParse: [/moment\.js/],
     module: {
-      preLoaders: [
-        { test: /\.(es6|jsx?)$/, loader: 'eslint' }
-      ],
       loaders: [
         loaders.es6,
         loaders.json,
@@ -99,9 +97,6 @@ module.exports = function (options) {
     hotloadPort: options.hotloadPort,
 
     // Loader specific customization
-    eslint: {
-      configFile: path.join(__dirname, './.eslintrc')
-    },
     remarkable: {
       preset: 'full',
       html: true
