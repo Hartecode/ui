@@ -1,4 +1,4 @@
-@import "~tfstyleguide/vars";
+@import '~tfstyleguide/vars';
 
 .search-bar__nav {
   background-color: @white;
@@ -6,7 +6,7 @@
   right: 0;
   top: 0;
   pointer-events: all;
-  transition: opacity .22s ease;
+  transition: opacity 0.22s ease;
   display: none;
 
   @media @tablet {
@@ -57,7 +57,7 @@
 .search-underlay {
   position: absolute;
   width: 100vw;
-  height: ~"calc(100vh - 286px)";
+  height: ~'calc(100vh - 286px)';
   top: 240px;
   bottom: 0;
   left: 0;
@@ -74,24 +74,54 @@
 }
 
 @keyframes wiggle {
-    10% { -webkit-transform: scale(1); }
-    25% { transform: scale(1.3); }
-    40% { transform: scale(1); }
-    55% { -webkit-transform: rotate(-2deg) scale(1); }
-    60% { -webkit-transform: rotate(2deg); }
-    70% { -webkit-transform: rotate(-2deg); }
-    80% { -webkit-transform: rotate(2deg); }
-    90% { -webkit-transform: rotate(0deg); }
+  10% {
+    -webkit-transform: scale(1);
+  }
+  25% {
+    transform: scale(1.3);
+  }
+  40% {
+    transform: scale(1);
+  }
+  55% {
+    -webkit-transform: rotate(-2deg) scale(1);
+  }
+  60% {
+    -webkit-transform: rotate(2deg);
+  }
+  70% {
+    -webkit-transform: rotate(-2deg);
+  }
+  80% {
+    -webkit-transform: rotate(2deg);
+  }
+  90% {
+    -webkit-transform: rotate(0deg);
+  }
 }
 
 @keyframes colorburst {
-  0% { box-shadow: 0 0 0 2px @red50; }
-  15% { box-shadow: 0 0 0 4px @orange; }
-  30% { box-shadow: 0 0 0 6px @yellow; }
-  50% { box-shadow: 0 0 0 8px @green75; }
-  75% { box-shadow: 0 0 0 6px @blue75; }
-  85% { box-shadow: 0 0 0 4px @purple20; }
-  100% { box-shadow: 0 0 0 2px @gray15; }
+  0% {
+    box-shadow: 0 0 0 2px @red50;
+  }
+  15% {
+    box-shadow: 0 0 0 4px @orange;
+  }
+  30% {
+    box-shadow: 0 0 0 6px @yellow;
+  }
+  50% {
+    box-shadow: 0 0 0 8px @green75;
+  }
+  75% {
+    box-shadow: 0 0 0 6px @blue75;
+  }
+  85% {
+    box-shadow: 0 0 0 4px @purple20;
+  }
+  100% {
+    box-shadow: 0 0 0 2px @gray15;
+  }
 }
 
 .search-form {
@@ -126,7 +156,7 @@
     }
 
     &.wiggle {
-      animation: wiggle 1s, colorburst .5s;
+      animation: wiggle 1s, colorburst 0.5s;
     }
   }
 
@@ -179,9 +209,8 @@
   border-top: 1px solid transparent;
   border-bottom: 1px solid transparent;
   background-color: @white;
-  transition: background-color .11s ease,
-              border-top-color .11s ease,
-              border-bottom-color .11s ease;
+  transition: background-color 0.11s ease, border-top-color 0.11s ease,
+    border-bottom-color 0.11s ease;
 
   p {
     width: @grid-width;
@@ -204,8 +233,7 @@
     background-color: @gray15;
     border-top-color: @gray25;
     border-bottom-color: @gray25;
-    transition: background-color .11s ease,
-                border-top-color .11s ease,
-                border-bottom-color .11s ease;
+    transition: background-color 0.11s ease, border-top-color 0.11s ease,
+      border-bottom-color 0.11s ease;
   }
 }

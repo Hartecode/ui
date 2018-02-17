@@ -2,5 +2,4 @@
 
 NODE_ENV='development' \
 DEBUG='webpack:*, express:router' \
-node --harmony demo/hotload
-
+npm run storybook

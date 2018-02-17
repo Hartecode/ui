@@ -1,4 +1,4 @@
-@import "~tfstyleguide/vars";
+@import '~tfstyleguide/vars';
 
 .tui-notification-view {
   position: absolute;
@@ -40,7 +40,7 @@
   text-align: center;
   background-color: @yellow;
 
-  .icon-notification  {
+  .icon-notification {
     position: relative;
     font-size: 28px;
     top: 1px;
@@ -71,10 +71,8 @@
   overflow: scroll;
   opacity: 0;
   transform: translate(-50%, -8px);
-  transition: padding-top 0.22s ease,
-              transform 0.22s ease,
-              opacity 0.22s ease,
-              max-height 0.15s ease;
+  transition: padding-top 0.22s ease, transform 0.22s ease, opacity 0.22s ease,
+    max-height 0.15s ease;
 
   &.tui-notification-list-container__visible {
     opacity: 1;
@@ -178,7 +176,6 @@
   direction: rtl;
   padding-top: 10px;
   text-align: center;
-
 }
 
 .tui-voting-star {
@@ -194,4 +191,3 @@
 .tui-voting-star:hover ~ .tui-voting-star g {
   fill: @blue;
 }
-

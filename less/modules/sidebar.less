@@ -1,35 +1,36 @@
-@import "~tfstyleguide/vars";
+@import '~tfstyleguide/vars';
 
 .sidebar-layout-container {
-	display: flex;
-	min-height: 100vh;
-	align-items: stretch;
-	margin-top: -30px; // To account for nav margin
-	background-image: linear-gradient(
-		to right,
-		@gray5 0%,
-		@gray5 50%,
-		transparent 50%,
-		transparent 100%);
-	background-size: cover;
+  display: flex;
+  min-height: 100vh;
+  align-items: stretch;
+  margin-top: -30px; // To account for nav margin
+  background-image: linear-gradient(
+    to right,
+    @gray5 0%,
+    @gray5 50%,
+    transparent 50%,
+    transparent 100%
+  );
+  background-size: cover;
 }
 
 .sidebar-layout-sidebar {
-	width: (3 * @column-px) + (2 * @gutter-px);
-	margin-left: auto;
-	padding-left: @gutter-px;
-	flex-shrink: 0;
-	padding-top: 60px;
+  width: (3 * @column-px) + (2 * @gutter-px);
+  margin-left: auto;
+  padding-left: @gutter-px;
+  flex-shrink: 0;
+  padding-top: 60px;
 }
 
 .sidebar-layout-main {
-	width: (10 * @column-px) + (9 * @gutter-px);
-	padding-right: @gutter-px;
-	margin-right: auto;
-	border-left: 1px solid @gray15;
-	padding-left: @column-px;
-	background-color: @white;
-	padding-top: 60px;
+  width: (10 * @column-px) + (9 * @gutter-px);
+  padding-right: @gutter-px;
+  margin-right: auto;
+  border-left: 1px solid @gray15;
+  padding-left: @column-px;
+  background-color: @white;
+  padding-top: 60px;
 }
 
 .menu-item {
@@ -42,7 +43,7 @@
 
   .icon-navigateright {
     color: @blue;
-    transition: opacity .2s ease;
+    transition: opacity 0.2s ease;
     vertical-align: middle;
     margin-right: 10px;
     opacity: 0;
@@ -73,7 +74,7 @@
 }
 
 .sidebar-menu {
-	margin-bottom: 45px;
+  margin-bottom: 45px;
 
   .subheading {
     margin-bottom: 15px;

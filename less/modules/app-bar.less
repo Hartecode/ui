@@ -1,4 +1,4 @@
-@import "~tfstyleguide/vars";
+@import '~tfstyleguide/vars';
 
 @nav-height: 46px;
 
@@ -9,7 +9,6 @@
   background-color: @blue;
   margin-bottom: 30px;
 }
-
 
 .app-nav {
   position: relative;
@@ -76,10 +75,8 @@
   opacity: 0;
   border-top: 1px solid @blue75;
   transform: translate(-100%, @nav-height);
-  transition: transform 0.35s ease,
-  opacity 0.28s ease,
-  max-width 0.35s ease,
-  max-height 0.22s ease;
+  transition: transform 0.35s ease, opacity 0.28s ease, max-width 0.35s ease,
+    max-height 0.22s ease;
 
   .app-nav-separator {
     border: none;
@@ -219,8 +216,7 @@
       color: @blue;
       background-color: @gray5;
       text-align: center;
-      transition: color 0.19s ease,
-      background-color 0.19s ease;
+      transition: color 0.19s ease, background-color 0.19s ease;
 
       &:hover {
         background-color: @blue25;
@@ -268,7 +264,7 @@
   padding-left: 5px;
 }
 
-[class^="icon-"].app-nav-icon,
+[class^='icon-'].app-nav-icon,
 .tui-icon.app-nav-icon {
   position: relative;
   top: 2px;
@@ -285,7 +281,7 @@
 
 .app-nav-burger {
   &::before {
-    content: "Menu";
+    content: 'Menu';
   }
 
   display: inline-block;
@@ -296,12 +292,11 @@
   border-right-width: 0;
   border-left-width: 0;
   border-radius: 1px;
-
 }
 
 .app-nav__visible .app-nav-burger {
   &::before {
-    content: "Close";
+    content: 'Close';
   }
 }
 
@@ -420,8 +415,6 @@
   margin-right: 15px;
 }
 
-
-
 /* Unauthed navigation */
 .app-nav-container.app-nav-container__unauthed {
   color: @white;
@@ -476,7 +469,6 @@
       li {
         display: inline-block;
       }
-
     }
   }
 }
@@ -526,8 +518,12 @@
     color: @green;
   }
 
-  @media @tablet { padding: 0px 20px; }
-  @media @big { padding: 0 52px; }
+  @media @tablet {
+    padding: 0px 20px;
+  }
+  @media @big {
+    padding: 0 52px;
+  }
   @media @mobile {
     &.hamburger-off .splash-nav-item:not(.splash-nav-item__logo) {
       display: none;
@@ -590,11 +586,11 @@
       color: @blue;
     }
 
-    .get-advice-call-modal{
+    .get-advice-call-modal {
       color: @green;
 
       @media @nonmobile {
-        &:hover{
+        &:hover {
           border-bottom: 1px solid @green;
         }
       }
@@ -634,7 +630,7 @@
         height: 60px;
         padding: 20px 3px;
 
-        &:hover{
+        &:hover {
           border-bottom: 1px solid @blue;
         }
         &.splash-nav-toggle__selected {
@@ -647,7 +643,7 @@
         position: relative;
         top: -6px;
 
-        & > a:hover{
+        & > a:hover {
           border-bottom: 0;
         }
       }
@@ -674,7 +670,8 @@
     @media @mobile {
       background-color: @blue5;
 
-      img, .splash-nav-dropdown-icon {
+      img,
+      .splash-nav-dropdown-icon {
         display: none;
       }
 
@@ -778,30 +775,30 @@
     }
   }
 
-  #splash-nav-education-dropdown{
-    @media @nonmobile{
-      ul{
+  #splash-nav-education-dropdown {
+    @media @nonmobile {
+      ul {
         .centered-container;
         .grid-container;
         display: flex;
       }
 
-      .splash-nav-dropdown-item{
+      .splash-nav-dropdown-item {
         .col-width(3);
         .gutter-offset(0);
       }
     }
   }
 
-  #splash-nav-courses-dropdown{
-    @media @nonmobile{
-      ul{
+  #splash-nav-courses-dropdown {
+    @media @nonmobile {
+      ul {
         .centered-container;
         .grid-container;
         display: flex;
       }
 
-      .splash-nav-dropdown-item{
+      .splash-nav-dropdown-item {
         .col-width(4);
         .gutter-offset(0);
       }

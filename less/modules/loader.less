@@ -1,4 +1,4 @@
-@import "~tfstyleguide/vars";
+@import '~tfstyleguide/vars';
 
 .tui-loader {
   min-height: 60px;
@@ -13,21 +13,21 @@
 }
 
 .tui-loader-stroke {
-  stroke-dasharray: 30,94;
+  stroke-dasharray: 30, 94;
   stroke-dashoffset: 0;
   animation: tui-loader-dash 1.5s linear infinite;
   stroke: @blue;
 }
 
-@keyframes tui-loader-rotate{
-  100%{
+@keyframes tui-loader-rotate {
+  100% {
     transform: rotate(360deg);
   }
 }
 
-@keyframes tui-loader-dash{
+@keyframes tui-loader-dash {
   0% {
-    stroke-dasharray: 30,94;
+    stroke-dasharray: 30, 94;
     stroke-dashoffset: 0;
     stroke: @blue;
   }
@@ -37,7 +37,7 @@
   }
 
   100% {
-    stroke-dasharray: 30,94;
+    stroke-dasharray: 30, 94;
     stroke-dashoffset: -124;
     stroke: @blue125;
   }

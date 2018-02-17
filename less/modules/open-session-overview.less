@@ -1,20 +1,17 @@
-@import "~tfstyleguide/vars";
+@import '~tfstyleguide/vars';
 
 /* Session component */
 .session {
   padding-bottom: 30px;
   background-color: transparent;
-  transition: background-color .33s ease,
-              box-shadow .33s ease;
-  box-shadow: 20px -5px 0 9px transparent,
-             -20px -5px 0 9px transparent;
+  transition: background-color 0.33s ease, box-shadow 0.33s ease;
+  box-shadow: 20px -5px 0 9px transparent, -20px -5px 0 9px transparent;
 
   &.session__linked {
     background-color: @gray15;
     border-radius: 0px;
 
-    box-shadow: 20px -5px 0 9px @gray15,
-               -20px -5px 0 9px @gray15;
+    box-shadow: 20px -5px 0 9px @gray15, -20px -5px 0 9px @gray15;
   }
 }
 
@@ -30,7 +27,6 @@
       }
     }
   }
-
 }
 
 .session-image-wrapper {
