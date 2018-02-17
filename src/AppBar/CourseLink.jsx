@@ -8,13 +8,13 @@ const CourseLink = ({ arrow, href, icon, name }) => (
     <span className="app-nav-courses-link-text">{name}</span>
     {arrow && <span className="icon-navigateright" />}
   </a>
-)
+);
 
 CourseLink.propTypes = {
   href: PropTypes.string,
   icon: PropTypes.string,
   name: PropTypes.string,
   arrow: PropTypes.bool
-}
+};
 
-module.exports = CourseLink
+module.exports = CourseLink;

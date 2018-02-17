@@ -12,15 +12,15 @@ class SearchLink extends React.Component {
   constructor(props) {
     super(props);
 
-    this._handleWindowKeyDown = this._handleWindowKeyDown.bind(this)
-    this._handleSearchLoad = this._handleSearchLoad.bind(this)
-    this._handleSearchUnload = this._handleSearchUnload.bind(this)
-    this._handleSearchClick = this._handleSearchClick.bind(this)
+    this._handleWindowKeyDown = this._handleWindowKeyDown.bind(this);
+    this._handleSearchLoad = this._handleSearchLoad.bind(this);
+    this._handleSearchUnload = this._handleSearchUnload.bind(this);
+    this._handleSearchClick = this._handleSearchClick.bind(this);
 
     this.state = {
       active: false,
       open: false
-    }
+    };
   }
 
   componentDidMount() {
@@ -39,31 +39,30 @@ class SearchLink extends React.Component {
     window.removeEventListener('searchLoad', this._handleSearchLoad);
   }
 
-  _handleWindowKeyDown (event) {
+  _handleWindowKeyDown(event) {
     if (event.which === SLASH_KEY_CODE) {
       // Disable events if in an input, textarea, etc
-      if (document.activeElement.nodeName !== "BODY") {
+      if (document.activeElement.nodeName !== 'BODY') {
         return false;
       }
       event.preventDefault();
       this.setState({ open: true });
       this.searchBar.autoFocus();
-    }
-    else if (event.which === ESC_KEY_CODE) {
+    } else if (event.which === ESC_KEY_CODE) {
       this.setState({ open: false });
       this.searchBar.unFocus();
     }
   }
 
-  _handleSearchLoad (event) {
+  _handleSearchLoad(event) {
     this.setState({ active: true });
   }
 
-  _handleSearchUnload (event) {
+  _handleSearchUnload(event) {
     this.setState({ active: false });
   }
 
-  _handleSearchClick (event) {
+  _handleSearchClick(event) {
     event.preventDefault();
 
     const { config, mobild, url } = this.props;
@@ -77,10 +76,8 @@ class SearchLink extends React.Component {
     }
 
     mobile
-      ? window.location = `${config.projects.url}/search`
-      : active
-      ? this.searchBar.wiggle()
-      : this.setState({ open: !open });
+      ? (window.location = `${config.projects.url}/search`)
+      : active ? this.searchBar.wiggle() : this.setState({ open: !open });
   }
 
   render() {
@@ -90,29 +87,26 @@ class SearchLink extends React.Component {
     return (
       <div className="search-container">
         <a
-            className={cx(className, "app-nav-link")}
-            onClick={this._handleSearchClick}>
-          {icon &&
-            <Icon className="app-nav-icon" name={icon} />}
-          {displayName &&
-            <span className="app-nav-text">{displayName}</span>}
+          className={cx(className, 'app-nav-link')}
+          onClick={this._handleSearchClick}
+        >
+          {icon && <Icon className="app-nav-icon" name={icon} />}
+          {displayName && <span className="app-nav-text">{displayName}</span>}
         </a>
         <SearchBar
           active={active}
           config={config}
-          className={cx(
-            'search-bar__nav',
-            {
-              'search-bar__hidden': !open && !active,
-              'search-bar__active': active
-            })}
+          className={cx('search-bar__nav', {
+            'search-bar__hidden': !open && !active,
+            'search-bar__active': active
+          })}
           open={open}
           underlay={!active}
-          ref={(c) => this.searchBar = c}
-          handleClickAway={this._handleSearchClick}>
-        </SearchBar>
+          ref={c => (this.searchBar = c)}
+          handleClickAway={this._handleSearchClick}
+        />
       </div>
-    )
+    );
   }
 }
 
@@ -120,7 +114,7 @@ SearchLink.propTypes = {
   displayName: PropTypes.string,
   icon: PropTypes.string,
   onInput: PropTypes.func,
-  onSubmit: PropTypes.func,
-}
+  onSubmit: PropTypes.func
+};
 
-module.exports = SearchLink
+module.exports = SearchLink;

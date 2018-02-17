@@ -25,9 +25,9 @@ const TFAnalytics = require('@thinkful/tf-analytics');
  */
 class TrackedLink extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
 
-    this._handleClick = this._handleClick.bind(this)
+    this._handleClick = this._handleClick.bind(this);
   }
 
   _handleClick(event) {
@@ -37,10 +37,13 @@ class TrackedLink extends React.Component {
       'className',
       'href',
       'onClick',
-      'target');
-    data.url = this.props.href
+      'target'
+    );
+    data.url = this.props.href;
 
-    let eventName = `clicked-${global.__env.config.appDisplayName}-${this.props.type}`;
+    let eventName = `clicked-${global.__env.config.appDisplayName}-${
+      this.props.type
+    }`;
 
     log(eventName, data);
     TFAnalytics.track(eventName, data);
@@ -53,13 +56,14 @@ class TrackedLink extends React.Component {
 
     return (
       <a
-          className={className}
-          href={href}
-          onClick={this._handleClick}
-          {...props}>
+        className={className}
+        href={href}
+        onClick={this._handleClick}
+        {...props}
+      >
         {children}
       </a>
-    )
+    );
   }
 }
 
@@ -67,10 +71,10 @@ TrackedLink.propTypes = {
   data: PropTypes.object,
   href: PropTypes.string.isRequired,
   type: PropTypes.string
-}
+};
 
 TrackedLink.defaultProps = {
   type: 'link'
-}
+};
 
 module.exports = TrackedLink;

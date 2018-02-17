@@ -1,1 +1,1 @@
-module.exports = require('./TopicPicker')
+module.exports = require('./TopicPicker');

@@ -7,7 +7,7 @@ const Icon = require('../Icon');
 
 const VotingBar = require('./VotingBar');
 
-const NOOP = () => {}
+const NOOP = () => {};
 
 class NotificationItem extends React.Component {
   constructor(props) {
@@ -26,20 +26,25 @@ class NotificationItem extends React.Component {
   }
 
   render() {
-    const { time, message, votable, votable_url } = this.props
+    const { time, message, votable, votable_url } = this.props;
 
     const timeDifference = moment.utc(time).fromNow();
 
-    return (<li className="tui-notification-item">
-      <a onClick={this._handleDismiss} className="tui-notification-item-dismiss">
-        <Icon name="close" />
-      </a>
-      <a onClick={this._handleClick} className="tui-notification-content">
-        <time className="tui-notification-time">{timeDifference}</time>
-        <p className="tui-notification-message">{message}</p>
-        {votable && votable_url && <VotingBar url={votable_url} />}
-      </a>
-    </li>);
+    return (
+      <li className="tui-notification-item">
+        <a
+          onClick={this._handleDismiss}
+          className="tui-notification-item-dismiss"
+        >
+          <Icon name="close" />
+        </a>
+        <a onClick={this._handleClick} className="tui-notification-content">
+          <time className="tui-notification-time">{timeDifference}</time>
+          <p className="tui-notification-message">{message}</p>
+          {votable && votable_url && <VotingBar url={votable_url} />}
+        </a>
+      </li>
+    );
   }
 }
 
@@ -49,14 +54,14 @@ NotificationItem.propTypes = {
   onDismiss: PropTypes.func,
   time: PropTypes.string.isRequired,
   votable: PropTypes.bool,
-  votable_url: PropTypes.string,
-}
+  votable_url: PropTypes.string
+};
 
 NotificationItem.defaultProps = {
   onClick: NOOP,
   onClick: NOOP,
   votable: false,
-  votable_url: '',
-}
+  votable_url: ''
+};
 
 module.exports = NotificationItem;

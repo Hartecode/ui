@@ -16,7 +16,7 @@ const NoNotifications = () => (
       </div>
     </li>
   </ul>
-)
+);
 
 const NotificationItemList = ({
   notifications,
@@ -26,18 +26,20 @@ const NotificationItemList = ({
   <ul className="tui-notification-list">
     {notifications.map((notification, idx) => (
       <NotificationItem
-          key={idx}
-          onClick={onItemClick}
-          onDismiss={onItemDismiss}
-          {...notification} />))}
+        key={idx}
+        onClick={onItemClick}
+        onDismiss={onItemDismiss}
+        {...notification}
+      />
+    ))}
   </ul>
-)
+);
 
 NotificationItemList.propTypes = {
   notifications: PropTypes.arrayOf(PropTypes.object),
   onItemClick: PropTypes.func,
-  onItemDismiss: PropTypes.func,
-}
+  onItemDismiss: PropTypes.func
+};
 
 class NotificationView extends React.Component {
   constructor(props) {
@@ -60,8 +62,8 @@ class NotificationView extends React.Component {
   }
 
   toggle() {
-    const { handleSeen, unreadCount } = this.props
-    const { visible } = this.state
+    const { handleSeen, unreadCount } = this.props;
+    const { visible } = this.state;
 
     if (unreadCount === 0) {
       return;
@@ -80,20 +82,18 @@ class NotificationView extends React.Component {
       handleItemClick,
       handleItemDismiss,
       notifications,
-      unseenCount,
+      unseenCount
     } = this.props;
 
-    const containerClasses = cx(
-      "tui-notification-list-container",
-      {"tui-notification-list-container__visible" : this.state.visible }
-    )
+    const containerClasses = cx('tui-notification-list-container', {
+      'tui-notification-list-container__visible': this.state.visible
+    });
 
-    const countClasses = cx(
-      "tui-notification-count",
-      {"tui-notification-count__clear" : unseenCount === 0 }
-    )
+    const countClasses = cx('tui-notification-count', {
+      'tui-notification-count__clear': unseenCount === 0
+    });
 
-    const unreadNotifictaions = notifications.filter(notif => ! notif.is_read)
+    const unreadNotifictaions = notifications.filter(notif => !notif.is_read);
     const hasNotifications = !_.isEmpty(unreadNotifications);
 
     return (
@@ -104,15 +104,18 @@ class NotificationView extends React.Component {
           </span>
         </a>
         <div className={containerClasses}>
-          {hasNotifications
-            ? <NotificationItemList
-                  notifications={unreadNotifications}
-                  onItemClick={handleItemClick}
-                  onItemDismiss={handleItemDismiss} />
-            : <NoNotifications />}
+          {hasNotifications ? (
+            <NotificationItemList
+              notifications={unreadNotifications}
+              onItemClick={handleItemClick}
+              onItemDismiss={handleItemDismiss}
+            />
+          ) : (
+            <NoNotifications />
+          )}
         </div>
       </div>
-    )
+    );
   }
 }
 
@@ -121,7 +124,7 @@ NotificationView.propTypes = {
   handleItemDismiss: PropTypes.func,
   handleSeen: PropTypes.func,
   notifications: PropTypes.arrayOf(PropTypes.object),
-  unseenCount: PropTypes.number,
-}
+  unseenCount: PropTypes.number
+};
 
 module.exports = NotificationView;

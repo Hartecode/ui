@@ -49,4 +49,4 @@ module.exports = {
   TopicPicker,
   TrackedLink,
   models
-}
+};

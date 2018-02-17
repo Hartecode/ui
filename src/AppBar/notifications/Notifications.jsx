@@ -14,8 +14,8 @@ class Notifications extends React.Component {
     this.state = {
       notifications: [],
       unreadCount: 0,
-      unseenCount: 0,
-    }
+      unseenCount: 0
+    };
 
     this.onStatusChange = this.onStatusChange.bind(this);
     this._handleSeen = this._handleSeen.bind(this);
@@ -35,7 +35,7 @@ class Notifications extends React.Component {
     this.setState({
       unreadCount,
       unseenCount,
-      notifications,
+      notifications
     });
   }
 
@@ -60,13 +60,14 @@ class Notifications extends React.Component {
   render() {
     return (
       <NotificationView
-          handleItemClick={this._handleItemClick}
-          handleItemDismiss={this._handleItemDismiss}
-          handleSeen={this._handleSeen}
-          notifications={this.state.notifications}
-          unseenCount={this.state.unseenCount} />
+        handleItemClick={this._handleItemClick}
+        handleItemDismiss={this._handleItemDismiss}
+        handleSeen={this._handleSeen}
+        notifications={this.state.notifications}
+        unseenCount={this.state.unseenCount}
+      />
     );
   }
 }
 
-module.exports = Notifications
+module.exports = Notifications;

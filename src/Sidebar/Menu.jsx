@@ -7,15 +7,15 @@ const SidebarMenu = ({ heading, items }) => (
     <div className="subheading">{heading}</div>
     {items}
   </div>
-)
+);
 
 SidebarMenu.propTypes = {
   heading: PropTypes.string,
   items: PropTypes.arrayOf(PropTypes.component)
-}
+};
 
 SidebarMenu.defaultProps = {
   items: []
-}
+};
 
 module.exports = SidebarMenu;

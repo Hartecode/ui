@@ -10,21 +10,22 @@ const Gravatar = ({ className, style, email, size, ...props }) => (
     className={cx('gravatar', className)}
     src={`${URL}/${MD5.hash(email)}?d=${this.props.default}&s=${size}`}
     style={style || {}}
-    {...props} />
-)
+    {...props}
+  />
+);
 
 Gravatar.propTypes = {
   email: PropTypes.string.isRequired,
   default: PropTypes.string,
   size: PropTypes.number,
   style: PropTypes.object
-}
+};
 
 Gravatar.defaultProps = {
   default: 'retro',
   email: '',
   size: 200,
   style: {}
-}
+};
 
 module.exports = Gravatar;

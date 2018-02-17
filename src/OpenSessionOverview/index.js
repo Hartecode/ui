@@ -1,1 +1,1 @@
-module.exports =  require('./OpenSessionOverview');
+module.exports = require('./OpenSessionOverview');

@@ -3,13 +3,13 @@ const PropTypes = require('prop-types');
 const React = require('react');
 
 class OneClickCopy extends React.Component {
-  _handleInputClick = (event) => {
+  _handleInputClick = event => {
     event.preventDefault();
     this.inputElement.select();
-  }
+  };
 
-  _handleCopyToClipboard = (event) => {
-    const {onCopyClick, onCopyClickSuccess, onCopyClickFail} = this.props;
+  _handleCopyToClipboard = event => {
+    const { onCopyClick, onCopyClickSuccess, onCopyClickFail } = this.props;
     event.preventDefault();
 
     this.inputElement.select();
@@ -17,48 +17,47 @@ class OneClickCopy extends React.Component {
 
     try {
       const successful = document.execCommand('copy');
-      successful ?
-        onCopyClickSuccess()
-      : onCopyClickFail();
+      successful ? onCopyClickSuccess() : onCopyClickFail();
     } catch (error) {
       onCopyClickFail();
     }
-  }
+  };
 
   render() {
-    const {className, copyButtonText, inputText} = this.props;
+    const { className, copyButtonText, inputText } = this.props;
 
-    return <div className={cx("one-click-copy", className)}>
-      <input
+    return (
+      <div className={cx('one-click-copy', className)}>
+        <input
           className="copy-area"
           onFocus={this._handleInputClick}
-          ref={(ref) => this.inputElement = ref}
+          ref={ref => (this.inputElement = ref)}
           type="text"
           value={inputText}
-          readOnly/>
-      <div
+          readOnly
+        />
+        <div
           className="button copy-button"
-          onClick={this._handleCopyToClipboard}>
-        {copyButtonText}
+          onClick={this._handleCopyToClipboard}
+        >
+          {copyButtonText}
+        </div>
       </div>
-    </div>
+    );
   }
 }
 
 OneClickCopy.propTypes = {
-  className: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.string,
-  ]),
+  className: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   copyButtonText: PropTypes.string,
   inputText: PropTypes.string,
   onCopyClick: PropTypes.func,
   onCopyClickSuccess: PropTypes.func,
-  onCopyClickFail: PropTypes.func,
-}
+  onCopyClickFail: PropTypes.func
+};
 
 OneClickCopy.defaultProps = {
   copyButtonText: 'Copy'
-}
+};
 
-module.exports = OneClickCopy
+module.exports = OneClickCopy;

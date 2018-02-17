@@ -21,16 +21,14 @@ class Modal extends React.Component {
 
     this.state = {
       controlledByParent: !!props.close,
-      isOpen: true,
-    }
+      isOpen: true
+    };
   }
 
   _closeModal() {
-    const { close } = this.props
+    const { close } = this.props;
 
-    close
-      ? close()
-      : this.setState({ isOpen: false });
+    close ? close() : this.setState({ isOpen: false });
   }
 
   render() {
@@ -38,13 +36,13 @@ class Modal extends React.Component {
     const { controlledByParent, isOpen } = this.state;
 
     const modalClasses = cx('tui-modal-content', className);
-    const wrapperClasses = cx(
-      'tui-modal-wrapper',
-      { 'tui-modal-wrapper__hidden': (!controlledByParent) && (!isOpen) });
+    const wrapperClasses = cx('tui-modal-wrapper', {
+      'tui-modal-wrapper__hidden': !controlledByParent && !isOpen
+    });
 
     return (
       <div className={wrapperClasses}>
-        <div className="tui-modal-curtain" onClick={this._closeModal}/>
+        <div className="tui-modal-curtain" onClick={this._closeModal} />
         <div className={modalClasses}>
           <a className="tui-modal-close-button" onClick={this._closeModal}>
             <Icon name="close" />
@@ -59,6 +57,6 @@ class Modal extends React.Component {
 Modal.propTypes = {
   className: PropTypes.string,
   close: PropTypes.func
-}
+};
 
 module.exports = Modal;

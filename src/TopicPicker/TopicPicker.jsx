@@ -14,7 +14,7 @@ const RETURN_KEY_CODE = 13;
 
 const DEFAULT_MIN_TOPIC_LENGTH = 1;
 
-const mapLower = v => v.toLowerCase()
+const mapLower = v => v.toLowerCase();
 
 /*
  * TopicPicker component
@@ -36,17 +36,17 @@ class TopicPicker extends React.Component {
     super(props);
 
     // Private methods
-    this._filterTopicList = this._filterTopicList.bind(this)
-    this._handleKeyDown = this._handleKeyDown.bind(this)
-    this._handleMoveSelected = this._handleMoveSelected.bind(this)
-    this._handlePatternChange = this._handlePatternChange.bind(this)
-    this._handleAddTopic = this._handleAddTopic.bind(this)
-    this._handleRemoveTopic = this._handleRemoveTopic.bind(this)
-    this._handleTopicSubmit = this._handleTopicSubmit.bind(this)
-    this._toggleFocus = this._toggleFocus.bind(this)
+    this._filterTopicList = this._filterTopicList.bind(this);
+    this._handleKeyDown = this._handleKeyDown.bind(this);
+    this._handleMoveSelected = this._handleMoveSelected.bind(this);
+    this._handlePatternChange = this._handlePatternChange.bind(this);
+    this._handleAddTopic = this._handleAddTopic.bind(this);
+    this._handleRemoveTopic = this._handleRemoveTopic.bind(this);
+    this._handleTopicSubmit = this._handleTopicSubmit.bind(this);
+    this._toggleFocus = this._toggleFocus.bind(this);
 
     // Public methods
-    this.getTopics = this.getTopics.bind(this)
+    this.getTopics = this.getTopics.bind(this);
 
     this.state = {
       pattern: '',
@@ -65,58 +65,64 @@ class TopicPicker extends React.Component {
    * This makes the topics markdown to add emphasis if the property
    * `addMatchEmphasis` is truthy.
    */
-  _filterTopicList (additionalTopics) {
+  _filterTopicList(additionalTopics) {
     const { addMatchEmphasis, availableTopics, maxSuggestions } = this.props;
     const { pattern, topics } = this.state;
 
     // in case topic is something like `C++`
     const normalizedPattern = escapeStringRegexp(
-      this.state.pattern.toLowerCase());
+      this.state.pattern.toLowerCase()
+    );
 
     // find and mark the pattern matches in a case-insensitive way
-    return availableTopics
-      // filter for matching available topics
-      .filter(topic => (
-        topic.toLowerCase().match(normalizedPattern) &&
-        topics.indexOf(topic) < 0
-      ))
-      // limit the number of results
-      .slice(0, maxSuggestions)
-      // add the asterisks for emphasis around matching area
-      .map(topic => {
-        if (addMatchEmphasis) {
-          const firstIndex = topic
-            .toLowerCase()
-            .indexOf(topic.toLowerCase().match(normalizedPattern)[0])
-          const lastIndex = firstIndex + pattern.length + 1;
+    return (
+      availableTopics
+        // filter for matching available topics
+        .filter(
+          topic =>
+            topic.toLowerCase().match(normalizedPattern) &&
+            topics.indexOf(topic) < 0
+        )
+        // limit the number of results
+        .slice(0, maxSuggestions)
+        // add the asterisks for emphasis around matching area
+        .map(topic => {
+          if (addMatchEmphasis) {
+            const firstIndex = topic
+              .toLowerCase()
+              .indexOf(topic.toLowerCase().match(normalizedPattern)[0]);
+            const lastIndex = firstIndex + pattern.length + 1;
 
-          let topicArray = topic.split('');
-          topicArray.splice(firstIndex, 0, '*')
-          topicArray.splice(lastIndex, 0, '*')
+            let topicArray = topic.split('');
+            topicArray.splice(firstIndex, 0, '*');
+            topicArray.splice(lastIndex, 0, '*');
 
-          return topicArray.join('');
-        }
-        return topic
-      })
+            return topicArray.join('');
+          }
+          return topic;
+        })
+    );
   }
 
-  _handleKeyDown (event) {
-    const {selectedSuggestionIndex} = this.state;
+  _handleKeyDown(event) {
+    const { selectedSuggestionIndex } = this.state;
     const suggestions = this._filterTopicList();
 
     if (event.which === DOWN_ARROW_KEY_CODE) {
       this.setState({
         selectedSuggestionIndex: Math.min(
-          selectedSuggestionIndex + 1, suggestions.length - 1)});
-    }
-    else if (event.which === UP_ARROW_KEY_CODE) {
+          selectedSuggestionIndex + 1,
+          suggestions.length - 1
+        )
+      });
+    } else if (event.which === UP_ARROW_KEY_CODE) {
       this.setState({
-        selectedSuggestionIndex: Math.max(
-          selectedSuggestionIndex - 1, 0)});
-    }
-    else if (
-        (event.which == COMMA_KEY_CODE) ||
-        (event.which == RETURN_KEY_CODE)) {
+        selectedSuggestionIndex: Math.max(selectedSuggestionIndex - 1, 0)
+      });
+    } else if (
+      event.which == COMMA_KEY_CODE ||
+      event.which == RETURN_KEY_CODE
+    ) {
       this._handleTopicSubmit(event);
     }
   }
@@ -126,27 +132,30 @@ class TopicPicker extends React.Component {
    *
    * Usable in keydown handler for moving selected topic in suggestion list
    */
-  _handleMoveSelected (numMoves) {
+  _handleMoveSelected(numMoves) {
     const { availableTopics } = this.props;
     const { selectedSuggestionIndex } = this.state;
-    const newSelectedIndex = selectedSuggestionIndex + numMoves
+    const newSelectedIndex = selectedSuggestionIndex + numMoves;
 
-    if (newSelectedIndex >= -1 && newSelectedIndex < (availableTopics || []).length) {
-      this.setState({selectedSuggestionIndex: newSelectedIndex});
+    if (
+      newSelectedIndex >= -1 &&
+      newSelectedIndex < (availableTopics || []).length
+    ) {
+      this.setState({ selectedSuggestionIndex: newSelectedIndex });
     }
   }
 
   /*
    * Handler for a form change
    */
-  _handlePatternChange (event) {
-    this.setState({pattern: event.target.value})
+  _handlePatternChange(event) {
+    this.setState({ pattern: event.target.value });
   }
 
   /*
    * Add a topic to the internal list of topics
    */
-  _handleAddTopic (topic) {
+  _handleAddTopic(topic) {
     const { topics } = this.state;
     const { handleUpdateTopics } = this.props;
 
@@ -157,7 +166,7 @@ class TopicPicker extends React.Component {
       handleUpdateTopics(newTopics);
     }
 
-    this.setState({pattern: '', selectedSuggestionIndex: -1});
+    this.setState({ pattern: '', selectedSuggestionIndex: -1 });
   }
 
   /*
@@ -165,7 +174,7 @@ class TopicPicker extends React.Component {
    *
    * Matching is case-sensitive
    */
-  _handleRemoveTopic (topic) {
+  _handleRemoveTopic(topic) {
     const { topics } = this.state;
     const { handleUpdateTopics } = this.props;
 
@@ -178,17 +187,16 @@ class TopicPicker extends React.Component {
   /*
    * Handle submission of a new topic
    */
-  _handleTopicSubmit (event) {
+  _handleTopicSubmit(event) {
     if (event && event.preventDefault) {
       event.preventDefault();
     }
-    const {selectedSuggestionIndex} = this.state;
+    const { selectedSuggestionIndex } = this.state;
     let topic;
 
     if (selectedSuggestionIndex > -1) {
       topic = this._filterTopicList()[selectedSuggestionIndex];
-    }
-    else {
+    } else {
       topic = this.state.pattern;
     }
 
@@ -197,14 +205,14 @@ class TopicPicker extends React.Component {
     }
   }
 
-  _toggleFocus () {
-    this.setState({ isFocused: !this.state.isFocused })
+  _toggleFocus() {
+    this.setState({ isFocused: !this.state.isFocused });
   }
 
   /*
    * Getter for topics
    */
-  getTopics () {
+  getTopics() {
     return this.state.topics;
   }
 
@@ -217,26 +225,26 @@ class TopicPicker extends React.Component {
         className={cx(
           'topic-picker',
           className,
-          isFocused && 'topic-picker-focus')}>
-
+          isFocused && 'topic-picker-focus'
+        )}
+      >
         {/* The existing topics */}
         {topics.map((topic, index) => (
-          <Tag
-            key={index}
-            className='topic'
-            displayName={topic}>
+          <Tag key={index} className="topic" displayName={topic}>
             <div
-                className="topic-delete-button"
-                onClick={(event) => this._handleRemoveTopic(topic)}>
-              <Icon name="close"/>
+              className="topic-delete-button"
+              onClick={event => this._handleRemoveTopic(topic)}
+            >
+              <Icon name="close" />
             </div>
           </Tag>
         ))}
 
         <div
-            className="topic-form"
-            onKeyDown={this._handleKeyDown}
-            onSubmit={this._handleTopicSubmit}>
+          className="topic-form"
+          onKeyDown={this._handleKeyDown}
+          onSubmit={this._handleTopicSubmit}
+        >
           <input
             onFocus={this._toggleFocus}
             onBlur={this._toggleFocus}
@@ -244,20 +252,23 @@ class TopicPicker extends React.Component {
             type="text"
             value={pattern}
             placeholder={placeholderText}
-            onChange={this._handlePatternChange} />
+            onChange={this._handlePatternChange}
+          />
 
           {/* The list of topic suggestions */}
           {pattern && (
             <ul className="topic-suggestion-list">
               {this._filterTopicList().map((topic, index) => (
                 <li
-                    key={index}
-                    className={cx(
-                      'topic-list-item',
-                      { selected: index === selectedSuggestionIndex })}
-                    onClick={(event) =>
-                      this._handleAddTopic(topic.replace(/\*/g, ''))}
-                    dangerouslySetInnerHTML={{__html: marked(topic)}} />
+                  key={index}
+                  className={cx('topic-list-item', {
+                    selected: index === selectedSuggestionIndex
+                  })}
+                  onClick={event =>
+                    this._handleAddTopic(topic.replace(/\*/g, ''))
+                  }
+                  dangerouslySetInnerHTML={{ __html: marked(topic) }}
+                />
               ))}
             </ul>
           )}
@@ -274,8 +285,8 @@ TopicPicker.propTypes = {
   className: PropTypes.string,
   handleUpdateTopics: PropTypes.func,
   maxSuggestions: PropTypes.number,
-  minTopicLength: PropTypes.number,
-}
+  minTopicLength: PropTypes.number
+};
 
 TopicPicker.defaultProps = {
   availableTopics: [],
@@ -284,7 +295,7 @@ TopicPicker.defaultProps = {
   minTopicLength: DEFAULT_MIN_TOPIC_LENGTH,
   placeholderText: "Add a tag (hit 'return' after each one)",
   // if parent doesn't pass in callback, to avoid conditionals inline
-  handleUpdateTopics: () => null,
-}
+  handleUpdateTopics: () => null
+};
 
-module.exports = TopicPicker
+module.exports = TopicPicker;

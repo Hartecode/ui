@@ -1,4 +1,4 @@
 module.exports = {
   notificationStore: require('./notificationStore'),
-  NotificationActions: require('./NotificationActions'),
-}
+  NotificationActions: require('./NotificationActions')
+};

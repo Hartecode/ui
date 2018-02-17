@@ -14,7 +14,7 @@ const LoggedOutNav = require('./LoggedOutNav');
 const linkSet = require('./linkSet');
 const NavLink = require('./NavLink');
 const Notifications = require('./notifications/Notifications');
-const WhiteTLogo = require('./WhiteTLogo')
+const WhiteTLogo = require('./WhiteTLogo');
 
 class AppNav extends React.Component {
   constructor(props) {
@@ -27,28 +27,27 @@ class AppNav extends React.Component {
 
     this.state = {
       isCourseDropdownVisible: false,
-      isMenuVisible: false,
+      isMenuVisible: false
     };
   }
 
   getChildContext() {
     return {
-      user: this.props.user,
-    }
+      user: this.props.user
+    };
   }
 
   _toggleMenu() {
     this.setState({
-      isMenuVisible: ! this.state.isMenuVisible
+      isMenuVisible: !this.state.isMenuVisible
     });
   }
 
   _toggleCourseDropdown() {
     this.setState({
-      isCourseDropdownVisible: ! this.state.isCourseDropdownVisible
+      isCourseDropdownVisible: !this.state.isCourseDropdownVisible
     });
   }
-
 
   _handleMouseEnter(event) {
     if (this.mouseTimeout) {
@@ -62,24 +61,24 @@ class AppNav extends React.Component {
       this.setState({
         isMenuVisible: false,
         isCourseDropdownVisible: false
-      })
+      });
     }, 400);
   }
 
   renderAuthed(user, config) {
-    const navClassName = cx(
-      'app-nav',
-      { 'app-nav__visible': this.state.isMenuVisible });
+    const navClassName = cx('app-nav', {
+      'app-nav__visible': this.state.isMenuVisible
+    });
     const navLinks = linkSet.main.filter(link => !link.search);
 
     return (
-      <div className='app-nav-container'>
+      <div className="app-nav-container">
         <nav
-            onMouseLeave={this._handleMouseLeave}
-            className={navClassName}
-            key="main-navigation"
-            rel="main-navigation">
-
+          onMouseLeave={this._handleMouseLeave}
+          className={navClassName}
+          key="main-navigation"
+          rel="main-navigation"
+        >
           <a href={linkSet.home.url}>
             <div>
               <WhiteTLogo />
@@ -87,22 +86,20 @@ class AppNav extends React.Component {
           </a>
 
           <ul className="app-nav-main">
-            {navLinks.map((link) => (
+            {navLinks.map(link => (
               <li key={uniqueId('link_')}>
                 <NavLink {...link} />
               </li>
             ))}
           </ul>
 
-          <ul
-              onMouseEnter={this._handleMouseEnter}
-              className="app-nav-list">
-            {navLinks.map((link) => (
+          <ul onMouseEnter={this._handleMouseEnter} className="app-nav-list">
+            {navLinks.map(link => (
               <li key={uniqueId('link_')}>
                 <NavLink className="app-nav-link__mobile-only" {...link} />
               </li>
             ))}
-            {linkSet.menu.map((link) => (
+            {linkSet.menu.map(link => (
               <li key={uniqueId('link_')}>
                 <NavLink className="app-nav-link__in-menu" {...link} />
               </li>
@@ -111,35 +108,41 @@ class AppNav extends React.Component {
 
           <Notifications />
 
-          <a className="app-nav-link app-nav-link__toggle" onClick={this._toggleMenu}>
+          <a
+            className="app-nav-link app-nav-link__toggle"
+            onClick={this._toggleMenu}
+          >
             <span alt="Menu" className="app-nav-burger" />
             <Gravatar
-                className="app-nav-gravatar"
-                email=""
-                src={`${config.api.url}/api/hupers/me/avatar`}
-                size={120} />
+              className="app-nav-gravatar"
+              email=""
+              src={`${config.api.url}/api/hupers/me/avatar`}
+              size={120}
+            />
           </a>
         </nav>
       </div>
-    )
+    );
   }
 
   render() {
     const { user, config } = this.props;
 
-    return user && user.tf_login && user.role !== 'guest'
-      ? this.renderAuthed(user, config)
-      : <LoggedOutNav config={config} />
+    return user && user.tf_login && user.role !== 'guest' ? (
+      this.renderAuthed(user, config)
+    ) : (
+      <LoggedOutNav config={config} />
+    );
   }
 }
 
 AppNav.propTypes = {
   user: PropTypes.object,
   config: PropTypes.object.isRequired
-}
+};
 
 AppNav.childContextTypes = {
-  user: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired
 };
 
 module.exports = AppNav;

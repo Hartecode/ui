@@ -1,3 +1,3 @@
 module.exports = {
-  OpenSession: require('./OpenSessionsModel'),
-}
+  OpenSession: require('./OpenSessionsModel')
+};
